@@ -27,11 +27,11 @@ The **CLI File Manager** is a command-line interface tool that allows users to i
 - **Friend Functions**
 - **Serialization**
 
-##License
+## License
 - This project is licensed under the Creative Commen Licence License.
 
-##Acknowledgements
+## Acknowledgements
 - Special thanks to Lahore Garrison University, Department of Computer Sciences, and our instructor **Sir Munawar Ahmad** for guidance and support.
 
-##Authors
+## Authors
 - [**Nauman Sajjad**](https://github.com/naumansajjad)
