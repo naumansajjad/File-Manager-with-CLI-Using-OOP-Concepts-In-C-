@@ -1,0 +1,169 @@
+The detailed pseudocode for your "File Management Using CLI" project, leveraging various Object-Oriented Programming (OOP) concepts, is outlined below. This pseudocode covers Inheritance, Abstraction, Polymorphism, Encapsulation, Memory Management, File Handling, Pointers, Exception Handling, Try Catch statements, friend functions, virtual functions, and other related concepts. This structure assumes you are using C++.
+
+Pseudocode
+Class Definitions and Inheritance
+cpp
+Copy code
+// Base class for all commands
+class Command {
+public:
+    virtual void execute() = 0; // Pure virtual function for abstraction
+};
+
+// Derived class for file reading
+class ReadFileCommand : public Command {
+private:
+    std::string fileName;
+public:
+    ReadFileCommand(std::string fName) : fileName(fName) {}
+    void execute() override; // Polymorphism through method overriding
+};
+
+// Derived class for file copying
+class CopyFileCommand : public Command {
+private:
+    std::string sourceFile;
+    std::string destFile;
+public:
+    CopyFileCommand(std::string src, std::string dest) : sourceFile(src), destFile(dest) {}
+    void execute() override;
+};
+
+// Derived class for file deleting
+class DeleteFileCommand : public Command {
+private:
+    std::string fileName;
+public:
+    DeleteFileCommand(std::string fName) : fileName(fName) {}
+    void execute() override;
+};
+
+// Derived class for file searching
+class SearchFileCommand : public Command {
+private:
+    std::string fileName;
+public:
+    SearchFileCommand(std::string fName) : fileName(fName) {}
+    void execute() override;
+};
+FileSystem Class for Encapsulation and File Handling
+cpp
+Copy code
+class FileSystem {
+public:
+    void readFile(const std::string& fileName);
+    void copyFile(const std::string& source, const std::string& destination);
+    void deleteFile(const std::string& fileName);
+    void searchFile(const std::string& fileName);
+
+    // Memory Management related functions
+    void* allocateMemory(size_t size);
+    void deallocateMemory(void* ptr);
+
+    // Exception handling example
+    void handleException(const std::exception& e);
+
+    friend class FileManager; // Friend function to access private members if necessary
+};
+Command Execution and Error Handling
+cpp
+Copy code
+// Implementation of command execution methods
+void ReadFileCommand::execute() {
+    try {
+        FileSystem fs;
+        fs.readFile(fileName);
+    } catch (const std::exception& e) {
+        FileSystem().handleException(e); // Using FileSystem method to handle exception
+    }
+}
+
+void CopyFileCommand::execute() {
+    try {
+        FileSystem fs;
+        fs.copyFile(sourceFile, destFile);
+    } catch (const std::exception& e) {
+        FileSystem().handleException(e);
+    }
+}
+
+void DeleteFileCommand::execute() {
+    try {
+        FileSystem fs;
+        fs.deleteFile(fileName);
+    } catch (const std::exception& e) {
+        FileSystem().handleException(e);
+    }
+}
+
+void SearchFileCommand::execute() {
+    try {
+        FileSystem fs;
+        fs.searchFile(fileName);
+    } catch (const std::exception& e) {
+        FileSystem().handleException(e);
+    }
+}
+FileManager Class for Managing Commands
+cpp
+Copy code
+class FileManager {
+private:
+    std::vector<Command*> commandHistory; // Using pointers for polymorphism
+
+public:
+    void executeCommand(Command* cmd) {
+        cmd->execute();
+        commandHistory.push_back(cmd);
+    }
+
+    ~FileManager() {
+        for (auto cmd : commandHistory) {
+            delete cmd; // Memory management, deallocating memory
+        }
+    }
+};
+Main Function for Command Line Interface
+cpp
+Copy code
+int main() {
+    FileManager fileManager;
+    std::string command;
+
+    while (true) {
+        std::cout << "Enter command: ";
+        std::cin >> command;
+
+        if (command == "read") {
+            std::string fileName;
+            std::cin >> fileName;
+            fileManager.executeCommand(new ReadFileCommand(fileName));
+        } else if (command == "copy") {
+            std::string src, dest;
+            std::cin >> src >> dest;
+            fileManager.executeCommand(new CopyFileCommand(src, dest));
+        } else if (command == "delete") {
+            std::string fileName;
+            std::cin >> fileName;
+            fileManager.executeCommand(new DeleteFileCommand(fileName));
+        } else if (command == "search") {
+            std::string fileName;
+            std::cin >> fileName;
+            fileManager.executeCommand(new SearchFileCommand(fileName));
+        } else if (command == "exit") {
+            break;
+        } else {
+            std::cout << "Unknown command" << std::endl;
+        }
+    }
+
+    return 0;
+}
+Explanation
+Inheritance: The Command class is the base class, and specific commands (ReadFileCommand, CopyFileCommand, DeleteFileCommand, and SearchFileCommand) inherit from it.
+Abstraction: The Command class has a pure virtual function execute(), making it abstract.
+Polymorphism: Derived classes override the execute() method, allowing different behaviors for different commands.
+Encapsulation: The FileSystem class encapsulates file operations and memory management methods.
+Exception Handling: try-catch blocks are used in command execution methods to handle exceptions.
+Memory Management: Dynamic allocation of commands using new and proper deallocation in the FileManager destructor.
+Friend Functions: FileManager could access private members of FileSystem if needed, shown by the friend declaration.
