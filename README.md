@@ -27,7 +27,6 @@ The **CLI File Manager** is a command-line interface tool that allows users to i
 - **Polymorphism** 
 - **Encapsulation** 
 - **Exception Handling** 
-- **Friend Functions**
 
 ## License
 - This project is licensed under the Creative Common Licence.
