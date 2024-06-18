@@ -1,7 +1,6 @@
 #include <iostream>
 #include <string>
 #include "FileManager.h"
-#include "Display.h"
 #include "Customize.h"
 using namespace std;
 
