@@ -5,8 +5,13 @@
 using namespace std;
 namespace fs = filesystem;
 
+// Class to to store actual functions that manipulate files
+
 class FileSystem {
     private:
+
+        // Declaration of functions
+
         void readfile(const string &filename);
         bool makedirectory(const string &directoryname);
         bool changedirectory(const string &directoryname);
@@ -19,6 +24,9 @@ class FileSystem {
         void movetoparentdirectory(const string &directory);
 
     public:
+
+        // function calling for private members
+
         void read_file(const string &filename){
             readfile(filename);
         }
@@ -49,7 +57,12 @@ class FileSystem {
         void move_to_parent_directory(const string &directory){
             movetoparentdirectory(directory);
         }
-}obj_FS;
+}obj_FS; // object initialization of FileSystem Class
+
+// Function Definitions for all private members
+
+
+//function for reading a file
 
 void FileSystem::readfile(const string &filename){
     ifstream file(filename);
@@ -66,8 +79,12 @@ void FileSystem::readfile(const string &filename){
     }
 }
 
+// function for creating new directory
+
 bool FileSystem::makedirectory(const string &directoryname){
     try{
+            // try catch statements for efficient error handling
+
         fs::path currentpath = fs::current_path();
         fs::path newpath = currentpath / directoryname;
         if (fs::exists(newpath) && fs::is_directory(newpath)){
@@ -80,11 +97,13 @@ bool FileSystem::makedirectory(const string &directoryname){
             cerr << "Error: Directory " << directoryname << " creation failed !" << endl;
             return false;
         }
-    }catch (const fs::filesystem_error &error){
+    }catch (const fs::filesystem_error &error){ // exception handling and system error handling
                 cerr << "Error: " << error.what() << endl;
                 return false;
     }
 }
+
+// function for changing directories
 
 bool FileSystem::changedirectory(const string &newDirectory){
     try
@@ -104,13 +123,15 @@ bool FileSystem::changedirectory(const string &newDirectory){
             return false;
         }
     }
-    catch (const fs::filesystem_error &error)
+    catch (const fs::filesystem_error &error) 
     {
         cerr << "Error: " << error.what() << "\n";
         return false;
     }
 }
         
+// function for copying files
+
 bool FileSystem::copyfile(const string &source, const string &destination){
     try
     {
@@ -126,7 +147,9 @@ bool FileSystem::copyfile(const string &source, const string &destination){
         return false;
     }
 }
-        
+
+// function to rename a file or directory
+
 bool FileSystem::renamefile(const string &currentFile, const string &newFile){
     try
     {
@@ -151,7 +174,9 @@ bool FileSystem::renamefile(const string &currentFile, const string &newFile){
         return false;
     }
 }
-        
+
+// function to delete a file or directory
+
 bool FileSystem::deletefile(const string &filename){
     try
     {
@@ -169,10 +194,14 @@ bool FileSystem::deletefile(const string &filename){
             cout << "File '" << filename << "' deleted successfully.\n";
             return true;
         }
+        else if(!fs::exists(filePath))
+        {
+            cerr << "Error: File or Directory does not exist.\n";
+            return false;
+        }
         else
         {
-            cerr << "Error: File or Directory cannot be deleted.\n";
-            return false;
+            cerr << "Error: File or Directory cannot be deleted!\n";
         }
     }
     catch (const fs::filesystem_error &error)
@@ -181,9 +210,11 @@ bool FileSystem::deletefile(const string &filename){
         return false;
     }
 }
-        
+
+// function to create a new file
+
 void FileSystem::writetofile(const string &filename, const string &content){
-    ofstream file(filename);
+    fstream file(filename, ios::out | ios::app);
     if (file.is_open())
     {
         file << content;
@@ -196,6 +227,8 @@ void FileSystem::writetofile(const string &filename, const string &content){
     }
 }
         
+// function to find a file or directory
+
 bool FileSystem::findfile(const string &filename){
     try {
         fs::path currentPath = fs::current_path();
@@ -219,7 +252,9 @@ bool FileSystem::findfile(const string &filename){
         return false;
     }
 }
-        
+
+// function to list contents of the current directory
+
 void FileSystem::listdirectory(const string &directory){
     cout << "Listing contents of directory: "<< "\n";
     for (const auto &entry : fs::directory_iterator(directory))
@@ -228,6 +263,8 @@ void FileSystem::listdirectory(const string &directory){
     }
 }
         
+// function to move to parent directory 
+
 void FileSystem::movetoparentdirectory(const string &directory){
     fs::path path(directory);
     fs::path newpath = path.parent_path();

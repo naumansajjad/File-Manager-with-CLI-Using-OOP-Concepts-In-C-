@@ -4,11 +4,21 @@
 namespace fs = filesystem;
 using namespace std;
 
+// Class Display to give initial display and the storing/retreiving of command keywords
+
 class Display {
     private:
+
+        // function to get current directory
+
         string get_current_directory(){
-            return fs::current_path().string();
+            return fs::current_path().string(); 
+
+            //function to get current path and conversion to string from filesystem library[c++ ver 17]
         }
+
+        // all commands keywords stored here
+
         string read_command = "type";
         string make_directory_command = "mkdir";
         string write_file_command = "echo";
@@ -24,15 +34,24 @@ class Display {
         string customize_command = "customize";
 
     public:    
+
+        // function to display welcome msg at startup
+
         void display(){
             cout << "\tWelcome to CLI File Manager\t" << endl;
             cout << "Type 'help' to see available commands" << endl;
             cout << endl;
         }
+
+        // function to get current path from private members
+
         string get_directory(){
             string directory = get_current_directory();
             return directory;
         }
+
+        // Setter functions to set new keywords during customization of keywords
+
         void set_read_cmd(const string &key){
             read_command = key;
             cout << "command customization successfull!" << endl;
@@ -98,6 +117,9 @@ class Display {
             cout << "command customization successfull!" << endl;
             cin.ignore();
         }
+
+        // getter functions to get commands keywords to display in help command and during customization.
+
         string get_exit_cmd(){
             return exit_command;
         }
@@ -137,4 +159,4 @@ class Display {
         string get_customize_cmd(){
             return customize_command;
         }
-}obj_disp;
+}obj_disp; // initialized an object of display class

@@ -2,34 +2,42 @@
 #include "Display.h"
 using namespace std;
 
+// Class Customize to customize different command keywords
+
 class Customize {
     private:
-        string keyword;
+        string key; // variable to store keyword temporarily
+
     public:
-        void customize(){
+    
+        // interface after selecting custmize command
+
+        void customize(){ //constructor
             cout << "\nChoose command to customize\n"
-                    "\n1.Read File (type)"
-                    "\n2.Make Directory (mkdir)"
-                    "\n3.Create new file (echo)"
-                    "\n4.List Directory (ls)"
-                    "\n5.Version Info (ver)"
-                    "\n6.Move to Parent Directory (cd..)"
-                    "\n7.Change Directory (cd)"
-                    "\n8.Rename file (ren)"
-                    "\n9.Copy File (copy)"
-                    "\n10.Find file (find)"
-                    "\n11.Delete file (del)"
-                    "\n12.Exit CLI (exit)"
+                    "\n1.Read File ("<<obj_disp.get_read_cmd()<<")"
+                    "\n2.Make Directory ("<<obj_disp.get_mkdir_cmd()<<")"
+                    "\n3.Create new file ("<<obj_disp.get_write_cmd()<<")"
+                    "\n4.List Directory ("<<obj_disp.get_ls_cmd()<<")"
+                    "\n5.Version Info ("<<obj_disp.get_ver_cmd()<<")"
+                    "\n6.Move to Parent Directory ("<<obj_disp.get_parentdir_cmd()<<")"
+                    "\n7.Change Directory ("<<obj_disp.get_cd_cmd()<<")"
+                    "\n8.Rename file ("<<obj_disp.get_ren_cmd()<<")"
+                    "\n9.Copy File ("<<obj_disp.get_copy_cmd()<<")"
+                    "\n10.Find file ("<<obj_disp.get_find_cmd()<<")"
+                    "\n11.Delete file ("<<obj_disp.get_delete_cmd()<<")"
+                    "\n12.Exit CLI ("<<obj_disp.get_exit_cmd()<<")"
                  << endl;
             cout << "Option: ";
             int op;
-            string key;
             cin >> op;
+
+            // switch to select one command
+
             switch(op){
                 case 1:
-                    cout << "New command: ";
+                    cout << "New command: "; // new keyword stored in variable
                     cin >> key;
-                    obj_disp.set_read_cmd(key);
+                    obj_disp.set_read_cmd(key); // function-call to set-keyword member function in Display Class
                     break;
                 case 2:
                     cout << "New command: ";
