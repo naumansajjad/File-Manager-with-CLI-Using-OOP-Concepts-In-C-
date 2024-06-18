@@ -32,7 +32,7 @@ The **CLI File Manager** is a command-line interface tool that allows users to i
 - This project is licensed under the Creative Common Licence.
 
 ## Acknowledgements
-- Special thanks to Lahore Garrison University, Department of Computer Sciences, and our instructor [**Sir Munawar Ahmad**](https://www.linkedin.com/in/munawar-ahmed-8543a91a9/) for guidance and support.
+- Special thanks to Lahore Garrison University, Department of Computer Sciences, and our instructor [**Sir Munawar Ahmad**](https://www.linkedin.com/in/munawar-ahmed-8543a91a9/) and [**Sir Muhammad Asad Ullah Khalid**](https://www.linkedin.com/in/mauk16/) for guidance and support.
 
 ## Authors
 - [**Nauman Sajjad**](https://github.com/naumansajjad)
