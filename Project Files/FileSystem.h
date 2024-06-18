@@ -165,6 +165,7 @@ bool FileSystem::deletefile(const string &filename){
             return true;
         }else if(fs::exists(filePath) && !fs::is_directory(filePath))
         {
+            fs::remove(filename);
             cout << "File '" << filename << "' deleted successfully.\n";
             return true;
         }
