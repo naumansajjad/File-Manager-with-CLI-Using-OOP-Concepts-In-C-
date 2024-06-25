@@ -28,7 +28,7 @@ int main(){
 
         if (command == obj_disp.get_exit_cmd()){
             break;
-        }else if (command == "help"){ // help command lists all commands
+        }else if (command == "help" || "Help" || "HELP"){ // help command lists all commands
 
             cout << "Available Commands:\n\n";
             cout << obj_disp.get_customize_cmd()<<" - customize a command keyword\n";
