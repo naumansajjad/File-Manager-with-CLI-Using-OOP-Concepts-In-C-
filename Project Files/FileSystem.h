@@ -202,6 +202,7 @@ bool FileSystem::deletefile(const string &filename){
         else
         {
             cerr << "Error: File or Directory cannot be deleted!\n";
+return false;
         }
     }
     catch (const fs::filesystem_error &error)
