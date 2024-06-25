@@ -12,7 +12,7 @@ class Customize {
     
         // interface after selecting custmize command
 
-        void customize(){ //constructor
+        void customize(){
             cout << "\nChoose command to customize\n"
                     "\n1.Read File ("<<obj_disp.get_read_cmd()<<")"
                     "\n2.Make Directory ("<<obj_disp.get_mkdir_cmd()<<")"

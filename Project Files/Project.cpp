@@ -10,7 +10,7 @@ int main(){
 
     obj_disp.display(); // function call for displaying welcome msg
 
-    string current_directory = obj_disp.get_directory(); //function call to get and store current path
+    string current_directory = fs::current_path().string(); //function to get and store current path
 
     FileManager obj_FM; // initialization of object of FileManager Class
 
@@ -22,13 +22,13 @@ int main(){
         cout <<"\n"<< current_directory << " >> ";
         getline(cin, user_input);
 
-        istringstream iss(user_input); // iss : used to distinguish words from a command
+        istringstream iss(user_input); // iss : used to separate single words from a string
         string command;
         iss >> command;
 
         if (command == obj_disp.get_exit_cmd()){
             break;
-        }else if (command == "help" || "Help" || "HELP"){ // help command lists all commands
+        }else if (command == "help"){ // help command lists all available commands
 
             cout << "Available Commands:\n\n";
             cout << obj_disp.get_customize_cmd()<<" - customize a command keyword\n";
@@ -52,6 +52,7 @@ int main(){
 
             // function calling of filemanager class
                                 //(                  Command* cmd          )
+
             obj_FM.execute_command(new CopyFileCommand(source, destination));
 
         }else if(command == obj_disp.get_write_cmd()){

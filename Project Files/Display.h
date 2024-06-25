@@ -1,5 +1,4 @@
 #include <iostream>
-#include <filesystem>
 #include <string>
 namespace fs = filesystem;
 using namespace std;
@@ -8,14 +7,6 @@ using namespace std;
 
 class Display {
     private:
-
-        // function to get current directory
-
-        string get_current_directory(){
-            return fs::current_path().string(); 
-
-            //function to get current path and conversion to string from filesystem library[c++ ver 17]
-        }
 
         // all commands keywords stored here
 
@@ -41,13 +32,6 @@ class Display {
             cout << "\tWelcome to CLI File Manager\t" << endl;
             cout << "Type 'help' to see available commands" << endl;
             cout << endl;
-        }
-
-        // function to get current path from private members
-
-        string get_directory(){
-            string directory = get_current_directory();
-            return directory;
         }
 
         // Setter functions to set new keywords during customization of keywords

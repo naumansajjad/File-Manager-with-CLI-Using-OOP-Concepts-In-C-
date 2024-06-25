@@ -10,8 +10,8 @@ class FileManager {
 
         void execute_command(Command* cmd){
             
-            cmd->execute(); // execution of virtual function in dedicated derived classess
-cmd=nullptr;
-delete cmd;
+            cmd->execute(); // execution of virtual function base class command
+            cmd = nullptr;
+            delete cmd;
         }
 };
