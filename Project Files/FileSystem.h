@@ -243,6 +243,7 @@ bool FileSystem::findfile(const string &filename){
                     std::cout << "The file '" << filename << "' is present at '" << entry.path() << "'" << std::endl;
                     return true;
                 }
+return true;
             }else{
                 cerr << "The file '" << filename << "' is not found\n";
                 return false;
