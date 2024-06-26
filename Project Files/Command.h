@@ -214,22 +214,19 @@ class FindFileCommand : public Command {
         FindFileCommand(const string &file) : filename(file){}
 
         void execute() override{
-            try {
-                fs::path currentPath = fs::current_path();
-
-                for (const auto& entry : fs::recursive_directory_iterator(currentPath)) {
-                    if (entry.path().filename() == filename) {
-                        if (fs::is_directory(entry.path())) {
-                            cout << "The directory '" << filename << "' is present at '" << entry.path() << "'" << endl;
-                        } else {
-                            cout << "The file '" << filename << "' is present at '" << entry.path() << "'" << endl;
-                        }
-                    }else{
-                        cerr << "The file '" << filename << "' is not found\n";
-                    }
-                }
-            } catch (const fs::filesystem_error& error) {
-                cerr << "Error: " << error.what() << "\n";
+            fs::path currentPath = fs::current_path();
+            fs::path filePath = currentPath / filename;
+            if (fs::exists(filePath) && fs::is_directory(filePath))
+            {
+                cout << "The directory '" << filename << "' is present in this directory" << endl;
+            }
+            else if (fs::exists(filePath) && !fs::is_directory(filePath))
+            {
+                cout << "The file '" << filename << "' is present in this directory" << endl;
+            }
+            else
+            {
+                cout << "The file or directory '" << filename << "' is not present in this directory" << endl;
             }
         }
 };
