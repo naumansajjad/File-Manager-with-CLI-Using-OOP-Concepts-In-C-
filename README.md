@@ -29,7 +29,7 @@ The **CLI File Manager** is a command-line interface tool that allows users to i
 - **Exception Handling** 
 
 ## License
-- This project is licensed under the Creative Common Licence.
+- This project is licensed under the MIT Licence.
 
 ## Acknowledgements
 - Special thanks to Lahore Garrison University, Department of Computer Sciences, and our instructor [**Sir Munawar Ahmad**](https://www.linkedin.com/in/munawar-ahmad-8543a91a9/) and [**Sir Muhammad Asad Ullah Khalid**](https://www.linkedin.com/in/mauk16/) for guidance and support.
